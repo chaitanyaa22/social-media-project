@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <a class="navbar-brand" href="#">Fakebook</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/profile">Home</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+                <a class="btn btn-sm btn-outline-light" href="/logout">Logout</a>
+            </form>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row bg-light p-5">
+            <div class="col-sm-4 text-center h-100 bg-">
+                <div>
+                    {{#if user.photo}}
+                    <img class="rounded-circle border border-secondary" src="{{user.photo}}" height="200px" width="200px">
+                    {{else}}
+                    <img class="rounded-circle border border-secondary"
+                        src="https://sophosnews.files.wordpress.com/2013/08/facebook-silhouette_thumb.jpg"
+                        height="200px" width="200px">
+                    {{/if}}
+                    <h4 class="mt-2">{{user.name}}</h4>
+                </div>
+            </div>
+            <div class="col-sm-7 mt-3 h-100 mt-5 ml-5 pt-5">
+                {{!-- <textarea class="col-md-12 rounded p-5"></textarea> --}}
+                <p><a href="#"><i id="edit" class="fa fa-pencil float-right">Edit Profile</i></a></p>
+                <p class="col-md-6">Status: <span> {{user.status}}</span></p>
+                <p class="col-md-6">Date of Birth: <span> {{user.birthdate}}</span></p>
+                <p class="col-md-6">Location: <span> {{user.location}}</span></p>
+                <p class="col-md-6">Phone: <span> {{user.phone}}</span></p>
+                <p class="col-md-6">Email: <span> {{user.email}}</span></p>
+                <p class="col-md-6">Hobbies: <span>{{user.hobbies}}</span></p>
+                <p class="col-md-6">About: <span> {{user.about}}</span></p>
+            </div>
+            <!-- The Modal -->
+            
+        </div>
+        <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form action="/userupdate" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            
+                            <input type="file" class="form-control mt-3" name="photo">
+                            <input type="text" class="form-control mt-3" name="name" placeholder="name" value="{{user.name}}">
+                            <input type="text" class="form-control mt-3" name="status" placeholder="status" value="{{user.status}}">
+                            <input type="date" class="form-control mt-3" name="birthdate" value="{{user.birthdate}}">
+                            <input type="text" class="form-control mt-3" name="location" placeholder="location" value="{{user.location}}">
+                            <input type="number" class="form-control mt-3" name="phone" placeholder="phone" value="{{user.phone}}">
+                            <input type="text" class="form-control mt-3" name="hobbies" placeholder="hobbies" value="{{user.hobbies}}">
+                            <input type="text" class="form-control mt-3" name="about" placeholder="about" value="{{user.about}}">
+                            
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm btn-outline-info">Update</button>
+                        </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+ 
+<script src='js/profile.js'></script>
+
+</html>
